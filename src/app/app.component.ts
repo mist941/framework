@@ -9,8 +9,7 @@ class AppComponent extends NXComponent {
 export const appComponent = new AppComponent({
   selector: "app-root",
   template: `
-  <div>
-    <h4>Working!</h4>
-  </div>
+    <app-header></app-header>
+    <main-router></main-router>
   `,
 });

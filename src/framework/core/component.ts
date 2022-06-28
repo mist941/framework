@@ -9,7 +9,8 @@ export interface ComponentConstructor {
 
 export abstract class Component implements IComponent {
   private readonly template: string;
-  private readonly selector: string;
+  public readonly selector: string;
+  private element: HTMLElement;
 
   protected constructor(config: ComponentConstructor) {
     this.template = config.template;
@@ -17,6 +18,10 @@ export abstract class Component implements IComponent {
   }
 
   render() {
-    document.querySelector(this.selector).innerHTML = this.template;
+    this.element = document.querySelector(this.selector);
+
+    if (!this.element) throw new Error(`Element with ${this.selector} not found`);
+
+    this.element.innerHTML = this.template;
   }
 }
